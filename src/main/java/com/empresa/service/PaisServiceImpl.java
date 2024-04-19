@@ -1,25 +1,21 @@
 package com.empresa.service;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.empresa.entity.Deporte;
-import com.empresa.repository.DeporteRepository;
+import com.empresa.entity.Pais;
+import com.empresa.repository.PaisRepository;
 
 @Service
-public class DeporteServiceImpl implements DeporteService{
+public class PaisServiceImpl implements PaisService {
 
 	@Autowired
-	private DeporteRepository repositorio;
-
+	private PaisRepository repositorio;
 	@Override
-	public List<Deporte> listaDeporte() {
+	public List<Pais> listaPais() {
 		return repositorio.findAll();
-	} 
-	
-	
+	}
 
 }
-
-

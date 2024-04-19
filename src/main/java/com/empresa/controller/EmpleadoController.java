@@ -13,44 +13,37 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.empresa.entity.Modalidad;
-import com.empresa.service.ModalidadService;
+import com.empresa.entity.Empleado;
+import com.empresa.service.EmpleadoService;
 import com.empresa.util.AppSettings;
 
 @RestController
-@RequestMapping("/url/modalidad")
+@RequestMapping("/url/empleado")
 @CrossOrigin(origins = AppSettings.URL_CROSS_ORIGIN)
-public class ModalidadController {
+public class EmpleadoController {
 
 	@Autowired
-	private ModalidadService modalidadService;
+	private EmpleadoService empleadoService;
 	
 
 	@GetMapping
-	public List<Modalidad> listaModalidad(){
-		List<Modalidad> lstSalida = modalidadService.listaModalidad();
+	public List<Empleado> listaEmpledo(){
+		List<Empleado> lstSalida = empleadoService.listaEmpleado();
 		return lstSalida;
 	}
 	
 	@PostMapping
-	public ResponseEntity<?> insertaModalidad(@RequestBody Modalidad obj){
+	public ResponseEntity<?> insertaEmpleado(@RequestBody Empleado obj){
 		 List<String> lstMensajes = new ArrayList<String>();	
 		 obj.setEstado(1);
 		 obj.setFechaRegistro(new Date());
 		 obj.setFechaActualizacion(new Date());
-		 Modalidad objSalida = modalidadService.insertaModalidad(obj);
+		 Empleado objSalida = empleadoService.insertaEmpleado(obj);
 		 if (objSalida == null) {
 			 lstMensajes.add("Error en el registro");
 		 }else {
-			 lstMensajes.add("Se registro la modalidad de id : " + objSalida.getIdModalidad());
+			 lstMensajes.add("Se registro el empleado de id : " + objSalida.getIdEmpleado());
 		 }
 		return ResponseEntity.ok(lstMensajes);
 	}
-	
 }
-
-
-
-
-
-
